@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>World Time Zones</title>
+    <style>
+      body {
+        width: 400px;
+        height: 500px;
+        margin: 0;
+        padding: 16px;
+        font-family: Arial, sans-serif;
+        background-color: #1a202c;
+        color: #e2e8f0;
+      }
+      .header {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 16px;
+      }
+      .button-group {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        gap: 8px;
+      }
+      .toggle-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background-color: #2d3748;
+        color: #e2e8f0;
+        border: 1px solid #4a5568;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+      .toggle-btn:hover {
+        background-color: #4a5568;
+      }
+      .clock-container {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .clock-card {
+        padding: 16px;
+        background: #2d3748;
+        border: 1px solid #4a5568;
+        border-radius: 8px;
+        text-align: center;
+        min-width: 0;
+      }
+      .city-name {
+        color: #e2e8f0;
+        font-weight: bold;
+        margin-bottom: 8px;
+      }
+      .time {
+        font-size: 24px;
+        font-weight: bold;
+        color: #1a202c;
+        margin-bottom: 4px;
+      }
+      .date {
+        color: #a0aec0;
+        font-size: 0.9em;
+      }
+      .analog-clock {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto;
+        position: relative;
+        display: none;
+      }
+      .analog-clock.active {
+        display: block;
+      }
+      .digital-time.hidden {
+        display: none;
+      }
+      .clock-hand {
+        position: absolute;
+        bottom: 50%;
+        left: 50%;
+        transform-origin: bottom;
+        background: #2d3748;
+        border-radius: 4px;
+      }
+      .hour-hand {
+        width: 4px;
+        height: 25px;
+        margin-left: -2px;
+      }
+      .minute-hand {
+        width: 3px;
+        height: 35px;
+        margin-left: -1.5px;
+        background: #4a5568;
+      }
+      .second-hand {
+        width: 2px;
+        height: 40px;
+        margin-left: -1px;
+        background: #e53e3e;
+      }
+      #toggleView {
+        background-color: #2d3748;
+        color: #e2e8f0;
+        border: 1px solid #4a5568;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 8px 0;
+      }
+      #toggleView:hover {
+        background-color: #4a5568;
+      }
+      body.light-theme {
+        background-color: #f7fafc;
+        color: #2d3748;
+      }
+      .light-theme .clock-card {
+        background: #ffffff;
+        border-color: #e2e8f0;
+      }
+      .light-theme .city-name {
+        color: #2d3748;
+      }
+      .light-theme .digital-time {
+        color: #2d3748;
+      }
+      .light-theme .date {
+        color: #4a5568;
+      }
+      .light-theme .toggle-btn {
+        background-color: #e2e8f0;
+        color: #2d3748;
+        border-color: #cbd5e0;
+      }
+      .light-theme .toggle-btn:hover {
+        background-color: #cbd5e0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="button-group">
+        <button id="toggleView" class="toggle-btn">
+          <span id="toggleIcon">🔢</span>
+          <span id="toggleText">Switch to Digital</span>
+        </button>
+        <button id="toggleTheme" class="toggle-btn" style="height: fit-content">
+          <span id="themeIcon">🌙</span>
+          <span id="themeText">Light Mode</span>
+        </button>
+      </div>
+    </div>
+    <div class="clock-container" id="clockContainer"></div>
+    <script src="popup.js"></script>
+  </body>
+</html>
